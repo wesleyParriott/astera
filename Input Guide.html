@@ -192,8 +192,7 @@
             
   <div class="section" id="input-guide">
 <h1>Input Guide<a class="headerlink" href="#input-guide" title="Permalink to this headline">¶</a></h1>
-<p>This is reference is meant to be a short guide for how to use Astera’s input system!
-NOTE: This is still under construction, feedback is welcome!</p>
+<p>Please note: This is still currently under construction and is within the early versions of Astera! If you find any errors, please open an <a class="reference external" href="https://github.com/tek256/astera/issues/">issue</a> or submit a <a class="reference external" href="https://github.com/tek256/astera/compare">pull request</a>!</p>
 <div class="section" id="preface">
 <h2>Preface<a class="headerlink" href="#preface" title="Permalink to this headline">¶</a></h2>
 <p>The input system is reliant on the rendering system due to both using GLFW’s features. Due to this reason you’ll want to make sure you link the two together for usage. The specific order of initialization doesn’t make too much of a difference, but for runtime usage you want to make sure to call <code class="docutils literal notranslate"><span class="pre">r_ctx_set_i_ctx</span></code> with the pointer to both your render and input contexts. This just enables the callbacks to make sure the input system get’s the information it needs.</p>

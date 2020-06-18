@@ -188,7 +188,7 @@
             
   <div class="section" id="asset-guide">
 <h1>Asset Guide<a class="headerlink" href="#asset-guide" title="Permalink to this headline">¶</a></h1>
-<p>This guide overviews how to manage assets using different methods within Astera. Please keep in mind that this is both still an early versiono of astera, as well as under construction.</p>
+<p>Please note: This is still currently under construction and is within the early versions of Astera! If you find any errors, please open an <a class="reference external" href="https://github.com/tek256/astera/issues/">issue</a> or submit a <a class="reference external" href="https://github.com/tek256/astera/compare">pull request</a>!</p>
 <div class="section" id="basic-files">
 <h2>Basic Files<a class="headerlink" href="#basic-files" title="Permalink to this headline">¶</a></h2>
 <p>The asset system tries to be out of your way when it comes to managing assets. As a result many of these functions can operate without having to initialize anything. Where this shines especially is the <code class="docutils literal notranslate"><span class="pre">asset_get</span></code> function. It’s simply designed to get a file from the file system, and returned a formatted <code class="docutils literal notranslate"><span class="pre">asset_t*</span></code> struct pointer. In order to free any <code class="docutils literal notranslate"><span class="pre">asset_t</span></code> types you can call <code class="docutils literal notranslate"><span class="pre">asset_free(asset_t*)</span></code> which will free all the buffers of the file and the pointer allocated as well.</p>
