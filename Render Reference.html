@@ -1,0 +1,299 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Render Reference &mdash; astera 0.01 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="_static/icon.png"/>
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Sys Reference" href="Sys Reference.html" />
+    <link rel="prev" title="Input Reference" href="Input Reference.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #0a0a0a" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> astera
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Home</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Build</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Build Guide.html">Build Guide</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Asset Guide.html">Asset Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Audio Guide.html">Audio Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Input Guide.html">Input Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Render Guide.html">Render Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Sys Guide.html">Sys Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UI Guide.html">UI Guide</a></li>
+</ul>
+<p class="caption"><span class="caption-text">References</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Asset Reference.html">Asset Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Audio Reference.html">Audio Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Input Reference.html">Input Reference</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Render Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#function-ordering">Function Ordering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#camera">Camera</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#attributes-uniforms">Attributes / Uniforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#error-checking">Error Checking</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Sys Reference.html">Sys Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UI Reference.html">UI Reference</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Special Thanks.html">Special Thanks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LICENSE.html">LICENSE</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">astera</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Render Reference</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/tek256/astera/blob/master/docs/Render Reference.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="render-reference">
+<h1>Render Reference<a class="headerlink" href="#render-reference" title="Permalink to this headline">¶</a></h1>
+<p>This is reference is meant to be a programmer’s companion when using astera!
+NOTE: This is still under construction, feedback is welcome!</p>
+<div class="section" id="function-ordering">
+<h2>Function Ordering<a class="headerlink" href="#function-ordering" title="Permalink to this headline">¶</a></h2>
+<p>This is just a general outline of the ordering of functions in order to properly render with astera’s rendering pipeline. A lot of these functions are interchangable and conditional, I’ll try my best to mark them as such in the list. Keep in mind that if you’re not using <code class="docutils literal notranslate"><span class="pre">r_framebuffer</span></code> or actively using an automatically created framebuffer, you do not need to use the <code class="docutils literal notranslate"><span class="pre">r_framebuffer_x</span></code> functions.</p>
+<p><strong>Rendering:</strong></p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">r_framebuffer_bind</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">r_window_clear</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">r_ctx_update</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">r_xxx_update</span></code> (particles, baked sheet, sprite, etc)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">r_xxx_draw</span></code> (particles, baked sheet, sprite, etc)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">r_ctx_draw</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">r_framebuffer_draw</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">r_window_swap_buffers</span></code></p></li>
+</ol>
+<p><strong>Initialization:</strong></p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">r_window_params_create</span></code> (or create window params struct yourself)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">r_ctx_create</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">r_xxx_create</span></code> (sheet, anim, baked sheet, particles, etc)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">r_ctx_make_current</span></code> (for input, optional)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">r_ctx_set_i_ctx</span></code> (for input, optional)</p></li>
+</ol>
+</div>
+<div class="section" id="camera">
+<h2>Camera<a class="headerlink" href="#camera" title="Permalink to this headline">¶</a></h2>
+<p>The camera for astera is automatically created on context creation with <code class="docutils literal notranslate"><span class="pre">r_ctx_create</span></code> to match the window size in pixels. You can modify the camera with the <code class="docutils literal notranslate"><span class="pre">r_camera_x</span></code> functions. To force update a camera’s view matrix, you can call <code class="docutils literal notranslate"><span class="pre">r_camera_update</span></code>. Otherwise the camera’s view matrix is updated within the <code class="docutils literal notranslate"><span class="pre">r_ctx_update</span></code> function.</p>
+<p>NOTE: You can bypass the <code class="docutils literal notranslate"><span class="pre">r_camera_x</span></code> functions by getting the pointer to the camera directly with <code class="docutils literal notranslate"><span class="pre">r_ctx_get_camera</span></code> if you wish.</p>
+</div>
+<div class="section" id="attributes-uniforms">
+<h2>Attributes / Uniforms<a class="headerlink" href="#attributes-uniforms" title="Permalink to this headline">¶</a></h2>
+<p>The vertex attributes for shaders are as follows:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">layout</span><span class="p">(</span><span class="n">location</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="n">in</span> <span class="n">vec3</span> <span class="n">VERTEX_POSITION</span><span class="p">;</span>
+<span class="n">layout</span><span class="p">(</span><span class="n">location</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="n">in</span> <span class="n">vec2</span> <span class="n">VERTEX_TEXCOORD</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Other uniforms expected with the default batching pipeline are:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">uniform</span> <span class="n">mat4</span> <span class="n">mats</span><span class="p">[];</span> <span class="c1">// the model matrix of each quad</span>
+<span class="n">uniform</span> <span class="n">vec4</span> <span class="n">colors</span><span class="p">[];</span> <span class="c1">// the colors of each quad</span>
+<span class="n">uniform</span> <span class="n">vec4</span> <span class="n">coords</span><span class="p">[];</span> <span class="c1">// the texture coords of each quad (min, max)</span>
+<span class="n">uniform</span> <span class="kt">int</span>  <span class="n">flip_x</span><span class="p">[];</span> <span class="c1">// if the quad&#39;s texcoords should flip along the x axis</span>
+<span class="n">uniform</span> <span class="kt">int</span>  <span class="n">flip_y</span><span class="p">[];</span> <span class="c1">// if the quad&#39;s texcoords should flip along the y axis</span>
+
+<span class="n">uniform</span> <span class="n">mat4</span> <span class="n">projection</span><span class="p">;</span> <span class="c1">// the projection matrix of the camera</span>
+<span class="n">uniform</span> <span class="n">mat4</span> <span class="n">view</span><span class="p">;</span> <span class="c1">// the view matrix of the camera</span>
+</pre></div>
+</div>
+<p>For framebuffer shaders the only uniform set is <code class="docutils literal notranslate"><span class="pre">uniform</span> <span class="pre">float</span> <span class="pre">gamma;</span></code>. NOTE: Gamma can be checked/changed with <code class="docutils literal notranslate"><span class="pre">r_window_get_gamma</span></code> and <code class="docutils literal notranslate"><span class="pre">r_window_set_gamma</span></code>.</p>
+</div>
+<div class="section" id="error-checking">
+<h2>Error Checking<a class="headerlink" href="#error-checking" title="Permalink to this headline">¶</a></h2>
+<p>The render system has two functions for explicit error checking. Both <code class="docutils literal notranslate"><span class="pre">r_check_error</span></code> and <code class="docutils literal notranslate"><span class="pre">r_check_error_loc</span></code> do essentially the same, thing. <code class="docutils literal notranslate"><span class="pre">r_check_error_loc</span></code> however calls <code class="docutils literal notranslate"><span class="pre">ASTERA_DBG</span></code> (Astera’s debug output macro) like so:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">ASTERA_DBG</span><span class="p">(</span><span class="s">&quot;GL Error: %i at location: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">error</span><span class="p">,</span> <span class="n">loc</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Devon (tek256)
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

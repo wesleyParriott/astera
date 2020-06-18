@@ -1,0 +1,273 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Sys Guide &mdash; astera 0.01 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="_static/icon.png"/>
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="UI Guide" href="UI Guide.html" />
+    <link rel="prev" title="Render Guide" href="Render Guide.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #0a0a0a" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> astera
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Home</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Build</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Build Guide.html">Build Guide</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Guides</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Asset Guide.html">Asset Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Audio Guide.html">Audio Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Input Guide.html">Input Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Render Guide.html">Render Guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Sys Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#timing">Timing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuration">Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="UI Guide.html">UI Guide</a></li>
+</ul>
+<p class="caption"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Asset Reference.html">Asset Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Audio Reference.html">Audio Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Input Reference.html">Input Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Render Reference.html">Render Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Sys Reference.html">Sys Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UI Reference.html">UI Reference</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Special Thanks.html">Special Thanks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LICENSE.html">LICENSE</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">astera</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Sys Guide</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/tek256/astera/blob/master/docs/Sys Guide.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="sys-guide">
+<h1>Sys Guide<a class="headerlink" href="#sys-guide" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<p>Sys is the <code class="docutils literal notranslate"><span class="pre">system</span></code> utility within astera. Sys comprises 2 main parts, timing and configuration.</p>
+<p>However if you don’t want the configuration functions in your project you can define <code class="docutils literal notranslate"><span class="pre">ASTERA_NO_CONF</span></code> before including the sys header to exclude it.</p>
+</div>
+<div class="section" id="timing">
+<h2>Timing<a class="headerlink" href="#timing" title="Permalink to this headline">¶</a></h2>
+<p>The timing system in astera is defined in <code class="docutils literal notranslate"><span class="pre">milliseconds</span></code>.</p>
+<p>There are defines to convert nanoseconds, microseconds, milliseconds, and seconds to and from each of the units. For example <code class="docutils literal notranslate"><span class="pre">SEC_TO_MS</span></code> is just defined as <code class="docutils literal notranslate"><span class="pre">1e-6</span></code> which is just 1 / 1000.</p>
+<p>Sys.h also includes two typedefs for timing:</p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">s_timer</span></code> which holds the last update, and the delta to this update.</div>
+<div class="line">and <code class="docutils literal notranslate"><span class="pre">time_s</span></code> which is defined as a <code class="docutils literal notranslate"><span class="pre">double</span></code>, or optionally <code class="docutils literal notranslate"><span class="pre">float</span></code> if the macro <code class="docutils literal notranslate"><span class="pre">ASTERA_SYS_LOWP_TIME</span></code></div>
+</div>
+<p>The timing functions within sys.h also include:</p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">time_s</span> <span class="pre">s_get_time();</span></code> - Returns the current time in milliseconds</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">time_s</span> <span class="pre">s_timer_update(s_timer*</span> <span class="pre">timer);</span></code> - Updates a timer &amp; returns the calculated delta</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">s_timer</span> <span class="pre">s_timer_create();</span></code> - Create a timer struct with current time</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">time_s</span> <span class="pre">s_sleep(time_s</span> <span class="pre">duration);</span></code> - Sleep for time (milliseconds), return time slept</div>
+</div>
+</div>
+<div class="section" id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
+<p>The configuration portion of sys is essentially a barebone (and unreliable) INI File loader. Keep in mind that this loader works off of new line, splits by equals, and doesn’t support tables.</p>
+<p><strong>Reading</strong></p>
+<p>The loader essentially splits each line by the <code class="docutils literal notranslate"><span class="pre">=</span></code> sign and reallocates the data into an <code class="docutils literal notranslate"><span class="pre">s_table</span></code> for usage. It can prove useful, but isn’t the most reliable of configuration methods.</p>
+<p>In order to use this loader you’ll want to call <code class="docutils literal notranslate"><span class="pre">s_table</span> <span class="pre">s_table_get(unsigned</span> <span class="pre">char*</span> <span class="pre">data,</span> <span class="pre">uint32_t</span> <span class="pre">length);</span></code>. The data passed being the raw data of the file (you can use the asset system to load this data).</p>
+<p>Once you’re done with the table, you can call <code class="docutils literal notranslate"><span class="pre">s_table_free(s_table</span> <span class="pre">table)</span></code> to free the arrays within it.</p>
+<p><strong>Writing</strong></p>
+<p>If you construct one of these tables and want to write it to file you can do so with <code class="docutils literal notranslate"><span class="pre">uint8_t</span> <span class="pre">s_table_write(s_table*</span> <span class="pre">table,</span> <span class="pre">char*</span> <span class="pre">filepath);</span></code> or <code class="docutils literal notranslate"><span class="pre">uint8_t</span> <span class="pre">s_table_write_mem(void*</span> <span class="pre">data,</span> <span class="pre">uint32_t</span> <span class="pre">dst_length,</span> <span class="pre">s_table*</span> <span class="pre">table,</span> <span class="pre">uint32_t*</span> <span class="pre">write_length);</span></code>.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Devon (tek256)
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

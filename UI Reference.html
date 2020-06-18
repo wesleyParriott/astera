@@ -1,0 +1,285 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>UI Reference &mdash; astera 0.01 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="_static/icon.png"/>
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Contributing" href="Contributing.html" />
+    <link rel="prev" title="Sys Reference" href="Sys Reference.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #0a0a0a" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> astera
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Home</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Build</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Build Guide.html">Build Guide</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Asset Guide.html">Asset Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Audio Guide.html">Audio Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Input Guide.html">Input Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Render Guide.html">Render Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Sys Guide.html">Sys Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UI Guide.html">UI Guide</a></li>
+</ul>
+<p class="caption"><span class="caption-text">References</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Asset Reference.html">Asset Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Audio Reference.html">Audio Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Input Reference.html">Input Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Render Reference.html">Render Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Sys Reference.html">Sys Reference</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">UI Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#definitions">Definitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tree-usage">Tree Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#element-drawing">Element Drawing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#input-usage">Input Usage</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Special Thanks.html">Special Thanks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LICENSE.html">LICENSE</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">astera</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>UI Reference</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/tek256/astera/blob/master/docs/UI Reference.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="ui-reference">
+<h1>UI Reference<a class="headerlink" href="#ui-reference" title="Permalink to this headline">¶</a></h1>
+<p>This is reference is meant to be a programmer’s companion when using astera!
+NOTE: This is still under construction, feedback is welcome!</p>
+<div class="section" id="definitions">
+<h2>Definitions<a class="headerlink" href="#definitions" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">UI</span> <span class="pre">Element</span></code> - Any drawable type of UI component (dropdown, text, box, etc)</p></li>
+</ul>
+</div>
+<div class="section" id="tree-usage">
+<h2>Tree Usage<a class="headerlink" href="#tree-usage" title="Permalink to this headline">¶</a></h2>
+<p>In Astera the <code class="docutils literal notranslate"><span class="pre">ui_tree</span></code> type is meant to be a catch all for grouping <code class="docutils literal notranslate"><span class="pre">ui_element</span></code>’s together. You can use multiple UI Trees at any given time, and they all hold their own input states, so creating menus / submenus is relatively easy to do with them.</p>
+<p>You can check for any input events using <code class="docutils literal notranslate"><span class="pre">ui_tree_check</span></code>, here’s the definition from the header:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/* Check a UI Tree for any events</span>
+<span class="cm"> * tree - the tree to check</span>
+<span class="cm"> * uid - the uid/element to check for</span>
+<span class="cm"> * returns: the event type / value */</span>
+<span class="kt">int32_t</span> <span class="nf">ui_tree_check_event</span><span class="p">(</span><span class="n">ui_tree</span><span class="o">*</span> <span class="n">tree</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">uid</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="element-drawing">
+<h2>Element Drawing<a class="headerlink" href="#element-drawing" title="Permalink to this headline">¶</a></h2>
+<p>With the UI System you can draw elements in a few different ways. You can draw them individually, with their respective <code class="docutils literal notranslate"><span class="pre">ui_xxxx_draw</span></code> functions. You can draw them from a <code class="docutils literal notranslate"><span class="pre">ui_tree</span></code> which will automatically sort &amp; order the elements to be drawn. Or you can draw them with the <code class="docutils literal notranslate"><span class="pre">ui_im_xxx_draw</span></code> functions.</p>
+</div>
+<div class="section" id="input-usage">
+<h2>Input Usage<a class="headerlink" href="#input-usage" title="Permalink to this headline">¶</a></h2>
+<p>The UI system uses an abstract input system with <code class="docutils literal notranslate"><span class="pre">next</span></code> and <code class="docutils literal notranslate"><span class="pre">prev</span></code> in places for navigating lists/trees. On top of that you can pass event types to individual elements for checking / custom interaction. For example:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// Create a button type and add it to a tree / context</span>
+<span class="n">ui_button</span> <span class="n">button</span><span class="p">;</span>
+
+<span class="c1">// ...</span>
+
+<span class="c1">// Assume the button is the selected `cursor` within a tree</span>
+<span class="c1">// Select the current cursor with event type/id of 1, as a non-mouse event</span>
+<span class="n">ui_tree_select</span><span class="p">(</span><span class="n">ui_ctx</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">tree</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+
+<span class="kt">int</span> <span class="n">event_type</span><span class="p">;</span>
+<span class="k">if</span><span class="p">((</span><span class="n">event_type</span> <span class="o">=</span> <span class="n">ui_tree_check_event</span><span class="p">(</span><span class="o">&amp;</span><span class="n">tree</span><span class="p">,</span> <span class="n">button</span><span class="p">.</span><span class="n">id</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">){</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Pressed!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Devon (tek256)
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

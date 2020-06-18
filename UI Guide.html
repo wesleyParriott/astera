@@ -1,0 +1,340 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>UI Guide &mdash; astera 0.01 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="_static/icon.png"/>
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Asset Reference" href="Asset Reference.html" />
+    <link rel="prev" title="Sys Guide" href="Sys Guide.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #0a0a0a" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> astera
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Home</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Build</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Build Guide.html">Build Guide</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Guides</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Asset Guide.html">Asset Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Audio Guide.html">Audio Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Input Guide.html">Input Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Render Guide.html">Render Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Sys Guide.html">Sys Guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">UI Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#function-ordering">Function Ordering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Asset Reference.html">Asset Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Audio Reference.html">Audio Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Input Reference.html">Input Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Render Reference.html">Render Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Sys Reference.html">Sys Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UI Reference.html">UI Reference</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Special Thanks.html">Special Thanks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LICENSE.html">LICENSE</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">astera</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>UI Guide</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/tek256/astera/blob/master/docs/UI Guide.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="ui-guide">
+<h1>UI Guide<a class="headerlink" href="#ui-guide" title="Permalink to this headline">¶</a></h1>
+<p>This is guide is meant to help getting started with the UI system in Astera.
+NOTE: This is still under construction, feedback is welcome!</p>
+<div class="section" id="function-ordering">
+<h2>Function Ordering<a class="headerlink" href="#function-ordering" title="Permalink to this headline">¶</a></h2>
+<p>This is just a general outline of the ordering of functions in order to properly draw / use UI  with astera’s UI pipeline.</p>
+<p><strong>Runtime</strong></p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ui_ctx_update(ui_ctx*</span> <span class="pre">ctx,</span> <span class="pre">vec2</span> <span class="pre">mouse_pos);</span></code> (NOTE: mouse_pos is optional)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ui_tree_xxx(ui_tree*</span> <span class="pre">tree);</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ui_frame_start(ui_ctx*</span> <span class="pre">ctx);</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ui_tree_draw(ui_ctx*</span> <span class="pre">ctx,</span> <span class="pre">ui_tree*</span> <span class="pre">tree);</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ui_xxxx_draw(ui_ctx*</span> <span class="pre">ctx,</span> <span class="pre">ui_xxx*</span> <span class="pre">xxx);</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ui_frame_end(ui_ctx*</span> <span class="pre">ctx);</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ui_tree_xxx();</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ui_tree_check(ui_ctx*</span> <span class="pre">ctx);</span></code></p></li>
+</ol>
+<p><strong>Initialization:</strong></p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ui_ctx_create(vec2</span> <span class="pre">screen_size,</span> <span class="pre">float</span> <span class="pre">pixel_scale,</span> <span class="pre">int8_t</span> <span class="pre">use_mouse,</span> <span class="pre">int8_t</span> <span class="pre">antialias);</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ui_xxx_create();</span></code> (dropdown, text, button, etc)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ui_tree_create(uint16_t</span> <span class="pre">capacity);</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ui_tree_add(...);</span></code></p></li>
+</ol>
+</div>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<p>This is just an outline of how you can use astera’s UI System. For working examples check the <code class="docutils literal notranslate"><span class="pre">examples/</span></code> directory in the astera repository!</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// ---- INITIALIZATION ----</span>
+
+<span class="c1">// Window size of 720p</span>
+<span class="n">vec2</span> <span class="n">window_size</span> <span class="o">=</span> <span class="p">{</span><span class="mf">1280.f</span><span class="p">,</span> <span class="mf">720.f</span><span class="p">};</span>
+<span class="c1">// arguments: window_size, pixel scale, use_mouse, antialias</span>
+<span class="n">ui_ctx</span><span class="o">*</span> <span class="n">ctx</span> <span class="o">=</span> <span class="n">ui_ctx_create</span><span class="p">(</span><span class="n">window_size</span><span class="p">,</span> <span class="mf">1.f</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+
+<span class="c1">// Load the font data into memory</span>
+<span class="n">asset_t</span><span class="o">*</span> <span class="n">font_data</span> <span class="o">=</span> <span class="n">asset_get</span><span class="p">(</span><span class="s">&quot;resources/fonts/monogram.ttf&quot;</span><span class="p">);</span>
+
+<span class="c1">// Create a font we can use from the data</span>
+<span class="n">ui_font</span> <span class="n">font</span> <span class="o">=</span> <span class="n">ui_font_create</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">font_data</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">,</span> <span class="n">font_data</span><span class="o">-&gt;</span><span class="n">data_length</span><span class="p">,</span> <span class="s">&quot;monogram&quot;</span><span class="p">);</span>
+
+<span class="c1">// position &amp; size is in relative screen units</span>
+<span class="n">vec2</span> <span class="n">button_pos</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.5f</span><span class="p">,</span> <span class="mf">0.5f</span><span class="p">};</span>
+<span class="n">vec2</span> <span class="n">button_size</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.15f</span><span class="p">,</span> <span class="mf">0.075f</span><span class="p">};</span>
+
+<span class="c1">// center the text of the button</span>
+<span class="n">ui_button</span> <span class="n">button</span> <span class="o">=</span> <span class="n">ui_button_create</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">button_pos</span><span class="p">,</span> <span class="n">button_size</span><span class="p">,</span> <span class="s">&quot;Hello world!&quot;</span><span class="p">,</span> <span class="n">UI_ALIGN_CENTER</span> <span class="o">|</span> <span class="n">UI_ALIGN_MIDDLE</span><span class="p">,</span> <span class="mf">32.f</span><span class="p">);</span>
+
+<span class="n">button</span><span class="p">.</span><span class="n">font</span> <span class="o">=</span> <span class="n">font</span><span class="p">;</span>
+
+<span class="c1">// Get some colors to use</span>
+<span class="n">vec4</span> <span class="n">red</span><span class="p">,</span> <span class="n">black</span><span class="p">;</span>
+<span class="n">ui_get_color</span><span class="p">(</span><span class="n">red</span><span class="p">,</span> <span class="s">&quot;#fb222d&quot;</span><span class="p">);</span>
+<span class="n">ui_get_color</span><span class="p">(</span><span class="n">black</span><span class="p">,</span> <span class="s">&quot;#0a0a0a&quot;</span><span class="p">);</span>
+
+<span class="c1">// Order: background, hover background, foreground, hover foreground, border, hover border</span>
+<span class="n">ui_button_set_colors</span><span class="p">(</span><span class="o">&amp;</span><span class="n">button</span><span class="p">,</span> <span class="n">black</span><span class="p">,</span> <span class="n">black</span><span class="p">,</span> <span class="n">red</span><span class="p">,</span> <span class="n">red</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+
+<span class="c1">// Create a tree to hold the element(s)</span>
+<span class="n">ui_tree</span> <span class="n">tree</span> <span class="o">=</span> <span class="n">ui_tree_create</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+
+<span class="c1">// Add the button to the tree</span>
+<span class="n">ui_tree_add</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">tree</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">button</span><span class="p">,</span> <span class="n">UI_BUTTON</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+
+
+<span class="c1">// ---- RUNTIME ----  (each frame)</span>
+
+<span class="c1">// this can be taken from astera&#39;s input system or your own</span>
+<span class="n">vec2</span> <span class="n">mouse_position</span><span class="p">;</span>
+<span class="n">ui_ctx_update</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">mouse_position</span><span class="p">);</span>
+
+<span class="k">if</span><span class="p">(...)</span> <span class="p">{</span> <span class="c1">// Arbitrary input</span>
+  <span class="c1">// Order: context, tree, type, is_mouse</span>
+  <span class="n">ui_tree_select</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">tree</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">if</span><span class="p">(...)</span> <span class="p">{</span> <span class="c1">// Arbitrary _mouse_ input</span>
+ <span class="n">ui_tree_select</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">tree</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">if</span><span class="p">(</span><span class="n">ui_tree_check</span><span class="p">(</span><span class="o">&amp;</span><span class="n">tree</span><span class="p">,</span> <span class="n">button</span><span class="p">.</span><span class="n">id</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">){</span>
+   <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Button pressed!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Clear the window</span>
+<span class="n">r_window_clear</span><span class="p">();</span> <span class="c1">// same as glClear DEPTH &amp; COLOR buffers</span>
+
+<span class="c1">// Start the frame for drawing</span>
+<span class="n">ui_frame_start</span><span class="p">(</span><span class="n">ctx</span><span class="p">);</span>
+
+<span class="c1">// Draw all the elements in the tree</span>
+<span class="n">ui_tree_draw</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">tree</span><span class="p">);</span>
+
+<span class="c1">// End and draw the frame</span>
+<span class="n">ui_frame_end</span><span class="p">(</span><span class="n">ctx</span><span class="p">);</span>
+
+<span class="c1">// Show the current frame</span>
+<span class="n">r_window_swap_buffers</span><span class="p">(</span><span class="n">render_ctx</span><span class="p">);</span> <span class="c1">// same as glfwSwapBuffers</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Devon (tek256)
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

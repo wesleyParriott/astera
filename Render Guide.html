@@ -1,0 +1,388 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Render Guide &mdash; astera 0.01 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="_static/icon.png"/>
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Sys Guide" href="Sys Guide.html" />
+    <link rel="prev" title="Input Guide" href="Input Guide.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #0a0a0a" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> astera
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Home</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Build</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Build Guide.html">Build Guide</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Guides</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Asset Guide.html">Asset Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Audio Guide.html">Audio Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Input Guide.html">Input Guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Render Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#basic-rendering">Basic Rendering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#shaders">Shaders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#drawing-batching">Drawing / Batching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#framebuffers">Framebuffers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Sys Guide.html">Sys Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UI Guide.html">UI Guide</a></li>
+</ul>
+<p class="caption"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Asset Reference.html">Asset Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Audio Reference.html">Audio Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Input Reference.html">Input Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Render Reference.html">Render Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Sys Reference.html">Sys Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UI Reference.html">UI Reference</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Special Thanks.html">Special Thanks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LICENSE.html">LICENSE</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">astera</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Render Guide</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/tek256/astera/blob/master/docs/Render Guide.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="render-guide">
+<h1>Render Guide<a class="headerlink" href="#render-guide" title="Permalink to this headline">¶</a></h1>
+<p>This guide overviews how to render in a few different methods using Astera.
+NOTE: This is still under construction, feedback is welcome!</p>
+<div class="section" id="basic-rendering">
+<h2>Basic Rendering<a class="headerlink" href="#basic-rendering" title="Permalink to this headline">¶</a></h2>
+<p>In order to start rendering with Astera, you need to create the render context. You can do so after including <code class="docutils literal notranslate"><span class="pre">astera/render.h</span></code> and calling:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/* Create the initial render context</span>
+<span class="cm"> * NOTE: this is needed to render with astera</span>
+<span class="cm"> *</span>
+<span class="cm"> * params - the window parameters for the game window</span>
+<span class="cm"> * use_fbo - to use a framebuffer to render to or not (post-processing)</span>
+<span class="cm"> * batch_count - the number of batches to create for different draw types</span>
+<span class="cm"> * batch_size - the max amount of sprites to store in each given batch</span>
+<span class="cm"> * anim_map_size - the amount of animations to allow to be cached / mapped</span>
+<span class="cm"> * shader_map_size - the amount of shaders to allow to be cached / mapped */</span>
+ <span class="n">r_ctx</span><span class="o">*</span> <span class="nf">r_ctx_create</span><span class="p">(</span><span class="n">r_window_params</span> <span class="n">params</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">use_fbo</span><span class="p">,</span>
+                     <span class="kt">uint32_t</span> <span class="n">batch_count</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">batch_size</span><span class="p">,</span>
+                     <span class="kt">uint32_t</span> <span class="n">anim_map_size</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">shader_map_size</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>To create the <code class="docutils literal notranslate"><span class="pre">r_window_params</span></code> type you can create the structure and set the values, or call the function:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/* Create a basic version of the window params structure for context creation</span>
+<span class="cm"> * width - the width of the window</span>
+<span class="cm">   * height - the height of the window</span>
+<span class="cm">   * resizable - if the window should be resizable (0 = no, 1 = yes)</span>
+<span class="cm">   * fullscreen - if the window should be fullscreen (0 = no, 1 = yes)</span>
+<span class="cm">   * vsync = if the window should use vsync (0 = no, 1 = yes)</span>
+<span class="cm">   * borderless = if the window should be borderless (0 = no, 1 = yes)</span>
+<span class="cm">   * refresh_rate = the refresh rate the should be used (if fullscreen)</span>
+<span class="cm">   * title - the title of the window</span>
+<span class="cm">   * returns: formatted r_window_params struct */</span>
+  <span class="n">r_window_params</span> <span class="nf">r_window_params_create</span><span class="p">(</span><span class="kt">uint32_t</span> <span class="n">width</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">height</span><span class="p">,</span>
+                                       <span class="kt">uint8_t</span> <span class="n">resizable</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">fullscreen</span><span class="p">,</span>
+                                       <span class="kt">uint8_t</span> <span class="n">vsync</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">borderless</span><span class="p">,</span>
+                                       <span class="kt">uint16_t</span>    <span class="n">refresh_rate</span><span class="p">,</span>
+                                       <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">title</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>After that you’re free to create sprites and textures. You can create your first texture sheet with: <code class="docutils literal notranslate"><span class="pre">r_sheet_create</span></code> or <code class="docutils literal notranslate"><span class="pre">r_sheet_create_tiled</span></code>:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/* Automatically create sprites based on a grid size</span>
+<span class="cm"> * data - the image data</span>
+<span class="cm"> * length - the length of the image data</span>
+<span class="cm"> * sub_width - the width of the subsprite</span>
+<span class="cm"> * sub_height - the height of the subsprite</span>
+<span class="cm"> * width_pad - the internal padding between sprites on each X axis side</span>
+<span class="cm"> * height_pad - the internal padding between sprites on each Y axis side */</span>
+ <span class="n">r_sheet</span> <span class="nf">r_sheet_create_tiled</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">char</span><span class="o">*</span> <span class="n">data</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">length</span><span class="p">,</span>
+                              <span class="kt">uint32_t</span> <span class="n">sub_width</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">sub_height</span><span class="p">,</span>
+                              <span class="kt">uint32_t</span> <span class="n">width_pad</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">height_pad</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Once you have that you have the basis for creating a sprite with: <code class="docutils literal notranslate"><span class="pre">r_sprite_create</span></code> and <code class="docutils literal notranslate"><span class="pre">r_sprite_set_tex</span></code></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/* Create a sprite to draw</span>
+<span class="cm"> * shader - the shader program to draw it with</span>
+<span class="cm">   * pos - the position of the sprite</span>
+<span class="cm">   * size - the size of the sprite in units */</span>
+  <span class="n">r_sprite</span> <span class="nf">r_sprite_create</span><span class="p">(</span><span class="n">r_shader</span> <span class="n">shader</span><span class="p">,</span> <span class="n">vec2</span> <span class="n">pos</span><span class="p">,</span> <span class="n">vec2</span> <span class="n">size</span><span class="p">);</span>
+
+<span class="cm">/* Set a sprite&#39;s texture</span>
+<span class="cm"> * sprite - the sprite to affect</span>
+<span class="cm"> * sheet - the texture sheet to use</span>
+<span class="cm"> * tex - the subtexture ID to use */</span>
+ <span class="kt">void</span> <span class="nf">r_sprite_set_tex</span><span class="p">(</span><span class="n">r_sprite</span><span class="o">*</span> <span class="n">sprite</span><span class="p">,</span> <span class="n">r_sheet</span><span class="o">*</span> <span class="n">sheet</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">tex</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>Each frame:</strong>
+At the start of each frame you should call <code class="docutils literal notranslate"><span class="pre">r_window_clear()</span></code> to clear the framebuffer. When your render step is done, you should call <code class="docutils literal notranslate"><span class="pre">r_ctx_draw(render_ctx_here)</span></code>. Once you’re done with the frame, you can call <code class="docutils literal notranslate"><span class="pre">r_window_swap_buffers(render_ctx_here</span></code> to display the new frame!</p>
+<p>Here is a small codeblock example of the whole process:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">r_window_params</span> <span class="n">params</span> <span class="o">=</span> <span class="n">r_window_params_create</span><span class="p">(</span><span class="mi">1280</span><span class="p">,</span> <span class="mi">720</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s">&quot;Untitled&quot;</span><span class="p">);</span>
+<span class="n">r_ctx</span><span class="o">*</span> <span class="n">render_ctx</span> <span class="o">=</span> <span class="n">r_ctx_create</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+
+<span class="c1">// asset_t is from &lt;astera/asset.h&gt;, this function just loads the raw file data</span>
+<span class="n">asset_t</span><span class="o">*</span> <span class="n">vert_data</span> <span class="o">=</span> <span class="n">asset_get</span><span class="p">(</span><span class="s">&quot;resources/shaders/main.vert&quot;</span><span class="p">);</span> <span class="c1">// Vertex Shader</span>
+<span class="n">asset_t</span><span class="o">*</span> <span class="n">frag_data</span> <span class="o">=</span> <span class="n">asset_get</span><span class="p">(</span><span class="s">&quot;resources/shaders/main.frag&quot;</span><span class="p">);</span> <span class="c1">// Fragment Shader</span>
+<span class="n">asset_t</span><span class="o">*</span> <span class="n">sheet_data</span> <span class="o">=</span> <span class="n">asset_get</span><span class="p">(</span><span class="s">&quot;resources/textures/DungeonTileset.png&quot;</span><span class="p">);</span> <span class="c1">// Example tilesheet</span>
+
+<span class="n">r_shader</span> <span class="n">shader</span> <span class="o">=</span> <span class="n">r_shader_create</span><span class="p">(</span><span class="n">vert_data</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">,</span> <span class="n">vert_data</span><span class="o">-&gt;</span><span class="n">data_length</span><span class="p">,</span> <span class="n">frag</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">,</span> <span class="n">frag</span><span class="o">-&gt;</span><span class="n">data_length</span><span class="p">);</span>
+<span class="n">r_sheet</span> <span class="n">sheet</span> <span class="o">=</span> <span class="n">r_sheet_create_tiled</span><span class="p">(</span><span class="n">sheet_data</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">,</span> <span class="n">sheet_data</span><span class="o">-&gt;</span><span class="n">data_length</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="n">vec2</span> <span class="n">sprite_size</span> <span class="o">=</span> <span class="p">{</span><span class="mf">64.f</span><span class="p">,</span> <span class="mf">64.f</span><span class="p">};</span>
+<span class="n">r_sprite</span> <span class="n">sprite</span> <span class="o">=</span> <span class="n">r_sprite_create</span><span class="p">(</span><span class="n">shader</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">sprite_size</span><span class="p">);</span>
+<span class="n">r_sprite_set_tex</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sprite</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">sheet</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+
+<span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">r_window_should_close</span><span class="p">(</span><span class="n">render_ctx</span><span class="p">)){</span>
+   <span class="n">r_window_clear</span><span class="p">();</span>
+
+   <span class="c1">// Only important if you&#39;re animating / moving the sprite</span>
+   <span class="n">r_sprite_update</span><span class="p">(</span><span class="n">render_ctx</span><span class="p">,</span> <span class="mf">16.f</span><span class="p">);</span>
+
+   <span class="c1">// Call for the sprite to be drawn</span>
+   <span class="n">r_sprite_draw</span><span class="p">(</span><span class="n">render_ctx</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">sprite</span><span class="p">);</span>
+   <span class="n">r_ctx_draw</span><span class="p">(</span><span class="n">render_ctx</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">sprite</span><span class="p">);</span>
+   <span class="n">r_window_swap_buffers</span><span class="p">(</span><span class="n">render_ctx</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="shaders">
+<h2>Shaders<a class="headerlink" href="#shaders" title="Permalink to this headline">¶</a></h2>
+<p>Using custom shaders with Astera is considered the primary approach. You can find premade shaders that will work, bundled within the examples of the repository (under examples/resources/shaders/).</p>
+<p>The vertex attributes for shaders are as follows:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">layout</span><span class="p">(</span><span class="n">location</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="n">in</span> <span class="n">vec3</span> <span class="n">VERTEX_POSITION</span><span class="p">;</span>
+<span class="n">layout</span><span class="p">(</span><span class="n">location</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="n">in</span> <span class="n">vec2</span> <span class="n">VERTEX_TEXCOORD</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Other uniforms expected with the default batching pipeline are:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">uniform</span> <span class="n">mat4</span> <span class="n">mats</span><span class="p">[];</span> <span class="c1">// the model matrix of each quad</span>
+<span class="n">uniform</span> <span class="n">vec4</span> <span class="n">colors</span><span class="p">[];</span> <span class="c1">// the colors of each quad</span>
+<span class="n">uniform</span> <span class="n">vec4</span> <span class="n">coords</span><span class="p">[];</span> <span class="c1">// the texture coords of each quad (min, max)</span>
+<span class="n">uniform</span> <span class="kt">int</span>  <span class="n">flip_x</span><span class="p">[];</span> <span class="c1">// if the quad&#39;s texcoords should flip along the x axis</span>
+<span class="n">uniform</span> <span class="kt">int</span>  <span class="n">flip_y</span><span class="p">[];</span> <span class="c1">// if the quad&#39;s texcoords should flip along the y axis</span>
+
+<span class="n">uniform</span> <span class="n">mat4</span> <span class="n">projection</span><span class="p">;</span> <span class="c1">// the projection matrix of the camera</span>
+<span class="n">uniform</span> <span class="n">mat4</span> <span class="n">view</span><span class="p">;</span> <span class="c1">// the view matrix of the camera</span>
+</pre></div>
+</div>
+<p>NOTE: the array size should be set to the batch size you set in the render pipeline for astera</p>
+<p><strong>Caveats:</strong>
+The Z coordinate in the vertex position attribute is only non-zero when passed / used by an <code class="docutils literal notranslate"><span class="pre">r_baked_sheet</span></code> type.
+Baked Sheets should be rendered as just a whole mesh, since all of the vertex &amp; texture coordinate data is baked into the vertex buffer. The vertex attribute layout is still the same.
+Particles can be rendered with a shader written for the batching system, but do not use <code class="docutils literal notranslate"><span class="pre">flip_x</span></code> or <code class="docutils literal notranslate"><span class="pre">flip_y</span></code></p>
+</div>
+<div class="section" id="drawing-batching">
+<h2>Drawing / Batching<a class="headerlink" href="#drawing-batching" title="Permalink to this headline">¶</a></h2>
+<p>Sprites aren’t individually managed by astera, rather treated as an intermediate type. This means that you can request any copy of the sprite to be drawn and it will be added to the batch determined to fit. Each of these batches can hold up to a certain number of sprites before issuing an instanced draw call, to draw what is within it’s buffers at once. Keep in mind that this is often limited by the shader and graphics driver. Play with buffer size to see what works best for you.
+You set the batch’s buffer size as a constant for all buffers on creation of the render context <code class="docutils literal notranslate"><span class="pre">r_ctx_create</span></code>. From the header:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// Create the initial render context</span>
+<span class="c1">// NOTE: this is needed to render with astera</span>
+<span class="c1">//</span>
+<span class="c1">// params - the window parameters for the game window</span>
+<span class="c1">// use_fbo - to use a framebuffer to render to or not (post-processing)</span>
+<span class="c1">// batch_count - the number of batches to create for different draw types</span>
+<span class="c1">// batch_size - the max amount of sprites to store in each given batch</span>
+<span class="c1">// anim_map_size - the amount of animations to allow to be cached / mapped</span>
+<span class="c1">// shader_map_size - the amount of shaders to allow to be cached / mapped</span>
+<span class="n">r_ctx</span><span class="o">*</span> <span class="nf">r_ctx_create</span><span class="p">(</span><span class="n">r_window_params</span> <span class="n">params</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">use_fbo</span><span class="p">,</span>
+                    <span class="kt">uint32_t</span> <span class="n">batch_count</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">batch_size</span><span class="p">,</span>
+                    <span class="kt">uint32_t</span> <span class="n">anim_map_size</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">shader_map_size</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>Best Practices:</strong>
+You should sort your sprite draw calls by shader and texture sheet.
+If a sprite has a different shader or texture sheet and is requested to draw with no free batches, the smallest batch will be drawn and swapped to fill the new combination.</p>
+</div>
+<div class="section" id="framebuffers">
+<h2>Framebuffers<a class="headerlink" href="#framebuffers" title="Permalink to this headline">¶</a></h2>
+<p>To be written</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Devon (tek256)
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
