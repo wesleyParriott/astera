@@ -111,6 +111,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#camera">Camera</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#attributes-uniforms">Attributes / Uniforms</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#error-checking">Error Checking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#particles">Particles</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Sys Reference.html">Sys Reference</a></li>
@@ -243,6 +244,92 @@
 <h2>Error Checking<a class="headerlink" href="#error-checking" title="Permalink to this headline">¶</a></h2>
 <p>The render system has two functions for explicit error checking. Both <code class="docutils literal notranslate"><span class="pre">r_check_error</span></code> and <code class="docutils literal notranslate"><span class="pre">r_check_error_loc</span></code> do essentially the same, thing. <code class="docutils literal notranslate"><span class="pre">r_check_error_loc</span></code> however calls <code class="docutils literal notranslate"><span class="pre">ASTERA_DBG</span></code> (Astera’s debug output macro) like so:</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">ASTERA_DBG</span><span class="p">(</span><span class="s">&quot;GL Error: %i at location: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">error</span><span class="p">,</span> <span class="n">loc</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="particles">
+<h2>Particles<a class="headerlink" href="#particles" title="Permalink to this headline">¶</a></h2>
+<p>Particles in Astera can function in one of two ways, default or custom methods.</p>
+<ul class="simple">
+<li><p>default: spawn within <code class="docutils literal notranslate"><span class="pre">size</span></code> of the <code class="docutils literal notranslate"><span class="pre">r_particles</span></code> system, and move with <code class="docutils literal notranslate"><span class="pre">particle_velocity</span></code> set in there as well.</p></li>
+<li><p>custom: spawn with a custom spawn function, and/or, animate/update with a custom function.</p></li>
+</ul>
+<p>The definitions of these custom functions are set with <code class="docutils literal notranslate"><span class="pre">r_particles_set_spawner</span></code> and <code class="docutils literal notranslate"><span class="pre">r_particles_set_animator</span></code>. Here are the expected function definitions are:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span> <span class="nf">void</span> <span class="p">(</span><span class="o">*</span><span class="n">r_particle_animator</span><span class="p">)(</span><span class="n">r_particles</span><span class="o">*</span><span class="p">,</span> <span class="n">r_particle</span><span class="o">*</span><span class="p">);</span>
+<span class="k">typedef</span> <span class="nf">void</span> <span class="p">(</span><span class="o">*</span><span class="n">r_particle_spawner</span><span class="p">)(</span><span class="n">r_particles</span><span class="o">*</span><span class="p">,</span> <span class="n">r_particle</span><span class="o">*</span><span class="p">);</span>
+
+<span class="c1">// EXAMPLES</span>
+
+<span class="c1">// Called once per anticipated spawn of particle (time / spawn_rate)</span>
+<span class="kt">void</span> <span class="nf">spawn_functions</span><span class="p">(</span><span class="n">r_particles</span><span class="o">*</span> <span class="n">system</span><span class="p">,</span> <span class="n">r_particle</span><span class="o">*</span> <span class="n">particle</span><span class="p">);</span>
+<span class="c1">// Called once per system update (frame)</span>
+<span class="kt">void</span> <span class="nf">animate_function</span><span class="p">(</span><span class="n">r_particles</span><span class="o">*</span> <span class="n">system</span><span class="p">,</span> <span class="n">r_particle</span><span class="o">*</span> <span class="n">particle</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>With this we can create functions to animate / update and spawn particles as we wish. For an example of this working in action, check out the <a class="reference external" href="https://github.com/tek256/astera/blob/master/examples/rendering/main.c">rendering example</a> in the GitHub repository!</p>
+<p>For reference, from the <code class="docutils literal notranslate"><span class="pre">render.h</span></code> header, here are the parameters of the <code class="docutils literal notranslate"><span class="pre">r_particles</span></code> struct:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">r_particles</span> <span class="p">{</span>
+  <span class="c1">// list - the array of particles</span>
+  <span class="n">r_particle</span><span class="o">*</span> <span class="n">list</span><span class="p">;</span>
+
+  <span class="c1">// capacity - the max amount of particles to buffer for</span>
+  <span class="c1">// count - the amount of particles within the system currently</span>
+  <span class="c1">// max_emission - the max amount of particles to emit (0 = infinite)</span>
+  <span class="c1">// emission_count - the amount of particles emitted</span>
+  <span class="kt">uint32_t</span> <span class="n">capacity</span><span class="p">,</span> <span class="n">count</span><span class="p">;</span>
+  <span class="kt">uint32_t</span> <span class="n">max_emission</span><span class="p">;</span>
+  <span class="kt">uint32_t</span> <span class="n">emission_count</span><span class="p">;</span>
+
+  <span class="c1">// particle_layer - the base layer to set a particle to</span>
+  <span class="kt">uint8_t</span> <span class="n">particle_layer</span><span class="p">;</span>
+
+  <span class="c1">// particle_life - the lifetime of the particle</span>
+  <span class="c1">// system_life - the lifetype of the system (0 = infinite)</span>
+  <span class="c1">// spawn_rate - the amount of particles to spawn per second</span>
+  <span class="kt">float</span> <span class="n">particle_life</span><span class="p">,</span> <span class="n">system_life</span><span class="p">;</span>
+  <span class="kt">float</span> <span class="n">spawn_rate</span><span class="p">;</span>
+
+  <span class="c1">// time - the internal timer of the particle system</span>
+  <span class="c1">// spawn_time - the time remaining to next particle spawn</span>
+  <span class="kt">float</span> <span class="n">time</span><span class="p">,</span> <span class="n">spawn_time</span><span class="p">;</span>
+
+  <span class="c1">// position - The center position of the particle system</span>
+  <span class="c1">// size - the size (width, height) of the particle system</span>
+  <span class="n">vec2</span> <span class="n">position</span><span class="p">,</span> <span class="n">size</span><span class="p">;</span>
+  <span class="c1">// particle_size - the size of particles (width, height)</span>
+  <span class="c1">// particle_velocity - the default velocity of particles</span>
+  <span class="n">vec2</span> <span class="n">particle_size</span><span class="p">,</span> <span class="n">particle_velocity</span><span class="p">;</span>
+
+  <span class="c1">// sheet - the texture sheet to use (note: only needed for PARTICLE_TEXTURED)</span>
+  <span class="n">r_sheet</span><span class="o">*</span> <span class="n">sheet</span><span class="p">;</span>
+  <span class="k">union</span> <span class="p">{</span>
+    <span class="n">r_anim</span>   <span class="n">anim</span><span class="p">;</span>
+    <span class="kt">uint32_t</span> <span class="n">subtex</span><span class="p">;</span>
+  <span class="p">}</span> <span class="n">render</span><span class="p">;</span>
+
+  <span class="c1">// Overall color of the system</span>
+  <span class="n">vec4</span> <span class="n">color</span><span class="p">;</span>
+
+  <span class="c1">// GL Uniforms</span>
+  <span class="n">mat4x4</span><span class="o">*</span>  <span class="n">mats</span><span class="p">;</span>
+  <span class="n">vec4</span><span class="o">*</span>    <span class="n">colors</span><span class="p">;</span>
+  <span class="n">vec4</span><span class="o">*</span>    <span class="n">coords</span><span class="p">;</span>
+  <span class="kt">uint32_t</span> <span class="n">uniform_count</span><span class="p">,</span> <span class="n">uniform_cap</span><span class="p">;</span>
+
+  <span class="c1">// For custom movement</span>
+  <span class="n">r_particle_animator</span> <span class="n">animator_func</span><span class="p">;</span>
+  <span class="n">r_particle_spawner</span>  <span class="n">spawner_func</span><span class="p">;</span>
+
+  <span class="c1">// Flags</span>
+  <span class="c1">// Calculate -- Whether to calculate data for render</span>
+  <span class="c1">// Type -- Render type colored (yes | no) &amp;&amp; (textured | animated)</span>
+  <span class="c1">// Note: (Can color both other types)</span>
+  <span class="c1">// Use Animator -- Whether to use custom animator</span>
+  <span class="c1">//    function of type `void xxx(r_particles*, r_particle*)`</span>
+  <span class="c1">// Use Spawner -- Whether to use custom spawning function</span>
+  <span class="c1">//    of type `void xxx(r_particles*, r_particle* particle)</span>
+  <span class="kt">int8_t</span> <span class="n">calculate</span><span class="p">,</span> <span class="n">type</span><span class="p">,</span> <span class="n">use_animator</span><span class="p">,</span> <span class="n">use_spawner</span><span class="p">;</span>
+<span class="p">};</span>
 </pre></div>
 </div>
 </div>

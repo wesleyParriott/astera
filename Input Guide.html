@@ -202,13 +202,13 @@
 <ol class="arabic simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">i_ctx_create</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">r_ctx_set_i_ctx</span></code> (for callbacks)</p></li>
-<li><p><strong>RUNTIME</strong></p></li>
+<li><p><strong>RUNTIME</strong> (<code class="docutils literal notranslate"><span class="pre">i_ctx_update</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">i_poll_events</span></code>)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">i_ctx_destroy</span></code></p></li>
 </ol>
 </div>
 <div class="section" id="basic-input">
 <h2>Basic Input<a class="headerlink" href="#basic-input" title="Permalink to this headline">¶</a></h2>
-<p>Every frame you’ll want to call <code class="docutils literal notranslate"><span class="pre">i_ctx_update</span></code> in order to update the states for your system. After this you can call the input check functions you want. There are 3 base types of input’s you can check:</p>
+<p>Every frame you’ll want to call <code class="docutils literal notranslate"><span class="pre">i_ctx_update</span></code> and <code class="docutils literal notranslate"><span class="pre">i_poll_events</span></code> in order to update the states for your system. After this you can call the input check functions you want. There are 3 base types of input’s you can check:</p>
 <ol class="arabic simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">key</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">mouse</span></code></p></li>
@@ -252,6 +252,7 @@
 
 <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">){</span>
   <span class="n">i_ctx_update</span><span class="p">(</span><span class="n">input_ctx</span><span class="p">);</span>
+  <span class="n">i_poll_events</span><span class="p">();</span>
 
   <span class="k">if</span><span class="p">(</span><span class="n">i_key_clicked</span><span class="p">(</span><span class="n">input_ctx</span><span class="p">,</span> <span class="n">KEY_SPACE</span><span class="p">)){</span>
     <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Hello world!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>

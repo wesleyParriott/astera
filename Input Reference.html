@@ -199,6 +199,7 @@
 </pre></div>
 </div>
 <p>If you want to modify a binding in real time, you can set <code class="docutils literal notranslate"><span class="pre">i_enable_binding_track</span></code> which will then set the next input to the respective value:</p>
+<p>NOTE: You can set the binding types as <code class="docutils literal notranslate"><span class="pre">ASTERA_BINDING_KEY</span></code>, <code class="docutils literal notranslate"><span class="pre">ASTERA_BINDING_MB</span></code>, <code class="docutils literal notranslate"><span class="pre">ASTERA_BINDING_JOYA</span></code>, or <code class="docutils literal notranslate"><span class="pre">ASTERA_BINDING_JOYB</span></code>.</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// Set a key binding&#39;s value (alt = 1, value = 0) to the next input type</span>
 <span class="kt">void</span> <span class="nf">i_enable_binding_track</span><span class="p">(</span><span class="n">i_ctx</span><span class="o">*</span> <span class="n">ctx</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">key_binding</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">alt</span><span class="p">);</span>
 </pre></div>
@@ -214,6 +215,10 @@
 <p>Many of the button macro values are modified based on the target system being compiled for. This is due to different operating system drivers remapping different buttons / axes to different numbers.</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">ASTERA_KB_NAMELEN</span></code> - The max length of a key binding’s name</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ASTERA_BINDING_KEY</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ASTERA_BINDING_MB</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ASTERA_BINDING_JOYA</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ASTERA_BINDING_JOYB</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">KEY_A</span></code> - <code class="docutils literal notranslate"><span class="pre">KEY_Z</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">KEY_0</span></code> - <code class="docutils literal notranslate"><span class="pre">KEY_9</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">XBOX_A</span></code></p></li>
