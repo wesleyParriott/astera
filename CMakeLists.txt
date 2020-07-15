@@ -15,9 +15,25 @@ set(CMAKE_FIND_FRAMEWORK FIRST)
 
 include(CMakeDependentOption)
 include(GenerateExportHeader)
+include(FetchContent)
+
+if (WIN32)
+  FetchContent_Declare(openalwin
+    URL "https://openal-soft.org/openal-binaries/openal-soft-1.20.1-bin.zip")
+  if (NOT openalwin_POPULATED)
+    FetchContent_Populate(openalwin)
+  endif()
+  list(APPEND CMAKE_PREFIX_PATH "${openalwin_SOURCE_DIR}")
+endif()
 
 find_package(OpenGL REQUIRED)
 find_package(OpenAL REQUIRED)
+
+if (OPENAL_LIBRARY AND OPENAL_INCLUDE_DIR AND NOT TARGET OpenAL::AL)
+  add_library(OpenAL::AL IMPORTED UNKNOWN)
+  target_include_directories(OpenAL::AL INTERFACE ${OPENAL_INCLUDE_DIR})
+  set_property(TARGET OpenAL::AL PROPERTY IMPORTED_LOCATION ${OPENAL_LIBRARY})
+endif()
 
 # If to build the `examples/` folder
 cmake_dependent_option(ASTERA_BUILD_EXAMPLES 
@@ -59,10 +75,6 @@ set(GLFW_VULKAN_STATIC OFF)
 add_subdirectory(${PROJECT_SOURCE_DIR}/dep/glfw EXCLUDE_FROM_ALL)
 add_subdirectory(${PROJECT_SOURCE_DIR}/dep/xxhash EXCLUDE_FROM_ALL)
 
-# if (NOT TARGET OpenAL::AL)
-#   add_library(OpenAL::AL ALIAS OpenAL)
-# endif()
-
 file(GLOB sources CONFIGURE_DEPENDS ${PROJECT_SOURCE_DIR}/src/*.c)
 add_library(${PROJECT_NAME} STATIC)
 target_sources(${PROJECT_NAME} PRIVATE ${sources})
@@ -75,7 +87,7 @@ target_include_directories(${PROJECT_NAME}
     $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/dep/glad/include>
     $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/dep/xxhash>
     $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/dep>
-    ${OPENAL_INCLUDE_DIR}
+    $<BUILD_INTERFACE:${OPENAL_INCLUDE_DIR}>
     # $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/dep/openal-soft>
     $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/dep/stb>
     $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
@@ -113,7 +125,7 @@ endif()
 target_link_libraries(${PROJECT_NAME}
   PUBLIC
     OpenGL::GL
-    OpenAL32
+    OpenAL::AL
     $<$<NOT:$<PLATFORM_ID:Windows>>:m>
     xxhash
     glfw)
