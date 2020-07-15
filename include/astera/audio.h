@@ -17,9 +17,11 @@ extern "C" {
 #include <astera/linmath.h>
 #include <stdint.h>
 
-#define AL_LIBTYPE_STATIC
-#include <AL/alc.h>
-#include <AL/al.h>
+// NOTE: These are relative includes for portability's sake
+//       the cmake find_package exports them as relative so it'll work
+//       cross platform as expected
+#include "alc.h"
+#include "al.h"
 
 #define STB_VORBIS_HEADER_ONLY
 #include <stb_vorbis.c>

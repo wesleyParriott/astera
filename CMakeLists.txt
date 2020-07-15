@@ -17,10 +17,16 @@ include(CMakeDependentOption)
 include(GenerateExportHeader)
 
 find_package(OpenGL REQUIRED)
+find_package(OpenAL REQUIRED)
 
 # If to build the `examples/` folder
 cmake_dependent_option(ASTERA_BUILD_EXAMPLES 
   "Build astera's examples" ON
+  "CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME" ON)
+
+# Build out the utility tools
+cmake_dependent_option(ASTERA_BUILD_TOOLS 
+  "Build astera's tools" OFF
   "CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME" ON)
 
 # Enables output using the ASTERA_DBG macro
@@ -30,14 +36,14 @@ option(ASTERA_DEBUG_OUTPUT "Enable Astera's internal debug output" ON)
 option(ASTERA_DEBUG_ENGINE
   "Enable debug options for astera's compilation" OFF)
 
-set(ALSOFT_DLOPEN ON)
-set(ALSOFT_WERROR OFF)
-set(ALSOFT_UTILS OFF)
-set(ALSOFT_EXAMPLES OFF)
-set(ALSOFT_TESTS OFF)
-set(ALSOFT_CONFIG OFF)
-set(ALSOFT_HRTF_DEFS OFF)
-set(ALSOFT_INSTALL OFF)
+#set(ALSOFT_DLOPEN ON)
+#set(ALSOFT_WERROR OFF)
+#set(ALSOFT_UTILS OFF)
+#set(ALSOFT_EXAMPLES OFF)
+#set(ALSOFT_TESTS OFF)
+#set(ALSOFT_CONFIG OFF)
+#set(ALSOFT_HRTF_DEFS OFF)
+#set(ALSOFT_INSTALL OFF)
 
 set(BUILD_SHARED_LIBS OFF)
 set(GLFW_BUILD_EXAMPLES OFF)
@@ -46,56 +52,60 @@ set(GLFW_BUILD_DOCS OFF)
 set(GLFW_INSTALL OFF)
 set(GLFW_VULKAN_STATIC OFF)
 
-set(LIBTYPE STATIC)
-add_subdirectory(${PROJECT_SOURCE_DIR}/dep/openal-soft EXCLUDE_FROM_ALL)
-set_property(TARGET OpenAL PROPERTY POSITION_INDEPENDENT_CODE ON)
-unset(LIBTYPE)
+# set(LIBTYPE STATIC)
+# add_subdirectory(${PROJECT_SOURCE_DIR}/dep/openal-soft EXCLUDE_FROM_ALL)
+# set_property(TARGET OpenAL PROPERTY POSITION_INDEPENDENT_CODE ON)
+# unset(LIBTYPE)
 add_subdirectory(${PROJECT_SOURCE_DIR}/dep/glfw EXCLUDE_FROM_ALL)
+add_subdirectory(${PROJECT_SOURCE_DIR}/dep/xxhash EXCLUDE_FROM_ALL)
 
-if (NOT TARGET OpenAL::AL)
-  add_library(OpenAL::AL ALIAS OpenAL)
-endif()
+# if (NOT TARGET OpenAL::AL)
+#   add_library(OpenAL::AL ALIAS OpenAL)
+# endif()
 
 file(GLOB sources CONFIGURE_DEPENDS ${PROJECT_SOURCE_DIR}/src/*.c)
 add_library(${PROJECT_NAME} STATIC)
 target_sources(${PROJECT_NAME} PRIVATE ${sources})
 target_sources(${PROJECT_NAME} PRIVATE ${PROJECT_SOURCE_DIR}/dep/nanovg/nanovg.c)
-target_sources(${PROJECT_NAME} PRIVATE ${PROJECT_SOURCE_DIR}/dep/zip/zip.c)
 
 target_include_directories(${PROJECT_NAME}
   PUBLIC
     $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/src>
-    $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/dep/openal-soft/include>
+    # $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/dep/openal-soft/include>
     $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/dep/glad/include>
+    $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/dep/xxhash>
     $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/dep>
-    $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/dep/openal-soft>
+    ${OPENAL_INCLUDE_DIR}
+    # $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/dep/openal-soft>
     $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/dep/stb>
-    $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/dep/zip>
     $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
     $<BUILD_INTERFACE:${PROJECT_BINARY_DIR}/include>
     $<INSTALL_INTERFACE:${CMAKE_INCLUDE_INSTALLDIR}>)
 target_compile_definitions(${PROJECT_NAME}
   PRIVATE
     $<$<BOOL:${ASTERA_DEBUG_ENGINE}>:ASTERA_DEBUG_OUTPUT>
+    $<$<BOOL:${ASTERA_DEBUG_OUTPUT}>:ASTERA_DEBUG_OUTPUT>
     $<$<PLATFORM_ID:FreeBSD>:FreeBSD>
     $<$<PLATFORM_ID:OpenBSD>:OpenBSD>
     $<$<PLATFORM_ID:NetBSD>:NetBSD>
     $<$<PLATFORM_ID:Darwin>:OSX>)
 target_compile_features(${PROJECT_NAME} PRIVATE c_std_99)
 
+target_compile_options(${PROJECT_NAME}
+  PRIVATE
+  $<$<NOT:$<C_COMPILER_ID:MSVC>>:-Wall -Wextra -pedantic>
+  $<$<C_COMPILER_ID:MSVC>:/WX /W4>)
+
 # Enables ASAN & Pedantics
 if(ASTERA_DEBUG_ENGINE)
   target_compile_options(${PROJECT_NAME}
-    PRIVATE
-    $<$<NOT:$<C_COMPILER_ID:MSVC>>:-Wall -Wextra -pedantic>
-    $<$<C_COMPILER_ID:MSVC>:/WX /W4>
     PUBLIC
     $<$<C_COMPILER_ID:MSVC>:/fsanitize=address>
-    $<$<NOT:$<C_COMPILER_ID:MSVC>>: -fsanitize=address -fno-omit-frame-pointer -O2 -g>)# -fstack-protector-all -fstack-protector-strong -D_GLIBCXX_ASSERTIONS -fasynchronous-unwind-tables -D_FORTIFY_SOURCE=2>)
+    $<$<NOT:$<C_COMPILER_ID:MSVC>>: -g -fsanitize=address -fno-omit-frame-pointer -O2 -g>)
     target_link_options(${PROJECT_NAME}
        PUBLIC
        $<$<C_COMPILER_ID:MSVC>:/fsanitize=address>
-       $<$<NOT:$<C_COMPILER_ID:MSVC>>:-fsanitize=address>)
+       $<$<NOT:$<C_COMPILER_ID:MSVC>>:-g -fsanitize=address>)
 else()
   target_compile_options(${PROJECT_NAME} PUBLIC -w)
 endif()
@@ -103,14 +113,15 @@ endif()
 target_link_libraries(${PROJECT_NAME}
   PUBLIC
     OpenGL::GL
-    OpenAL::AL
+    OpenAL32
     $<$<NOT:$<PLATFORM_ID:Windows>>:m>
+    xxhash
     glfw)
 
 set_property(TARGET astera PROPERTY C_VISIBILITY_PRESET "hidden")
 set_property(TARGET astera PROPERTY VERSION ${PROJECT_VERSION})
 
-install(TARGETS astera OpenAL glfw
+install(TARGETS astera glfw xxhash 
   EXPORT astera-targets
   INCLUDES DESTINATION "${CMAKE_INCLUDE_INSTALLDIR}")
 install(EXPORT astera-targets
@@ -121,6 +132,19 @@ install(DIRECTORY include/ "${PROJECT_BINARY_DIR}/include/"
   FILES_MATCHING PATTERN "*.h")
 
 if(ASTERA_BUILD_EXAMPLES)
-  add_subdirectory(examples)
+  if(EXISTS examples)
+    add_subdirectory(examples)
+  else()
+    set(ASTERA_BUILD_EXAMPLES OFF)
+  endif()
 endif()
+
+if(ASTERA_BUILD_TOOLS)
+  if(EXISTS ASTERA_BUILD_TOOLS)
+    add_subdirectory(tools)
+  else()
+    set(ASTERA_BUILD_TOOLS OFF)
+  endif()
+endif()
+ 
 

@@ -16,7 +16,7 @@
 #include <string.h>
 
 #if !defined(ASTERA_AL_NO_EFX)
-#include <AL/efx.h>
+#include "efx.h"
 
 #include <stdio.h>
 

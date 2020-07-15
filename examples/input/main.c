@@ -4,7 +4,7 @@
 #include <stdlib.h>
 
 //#define ASTERA_DEBUG_OUTPUT
-//#include <astera/debug.h>
+#include <astera/debug.h>
 
 #include <astera/asset.h>
 #include <astera/input.h>
@@ -208,7 +208,7 @@ void init_ui() {
   ui_img_set_border_radius(&img, 25.f);
 
   asset_free(ui_img_file);
-  free(ui_img_file);
+  // free(ui_img_file);
 
   ui_element button_ele   = ui_element_get(&button, UI_BUTTON);
   vec2       center_point = {0.5f, 0.5f};
@@ -242,7 +242,7 @@ void init() {
   r_window_params params =
       r_window_params_create(1280, 720, 0, 0, 1, 0, 0, "Input Example");
 
-  input_ctx = i_ctx_create(16, 16, 0, 8, 16, 32);
+  input_ctx = i_ctx_create(16, 16, 0, 5, 32);
 
   // Create a shell of a render context, since we're not using it for actual
   // drawing
@@ -254,8 +254,7 @@ void init() {
   r_ctx_make_current(render_ctx);
   r_ctx_set_i_ctx(render_ctx, input_ctx);
 
-  // If only finding happiiness in real life was this simple
-  // i_joy_create(input_ctx, 0);
+  i_joy_create(input_ctx, 0);
 
   init_ui();
 
@@ -278,20 +277,23 @@ void input(time_s delta) {
   vec2 mouse_pos = {i_mouse_get_x(input_ctx), i_mouse_get_y(input_ctx)};
   ui_ctx_update(u_ctx, mouse_pos);
 
-  /*int16_t joy_id = i_joy_connected(input_ctx);
+  int16_t joy_id = i_joy_connected(input_ctx);
   if (joy_id > -1) {
-    if (i_joy_clicked(input_ctx, XBOX_R1)) {
+    if (i_joy_down(input_ctx, 0, XBOX_B)) {
+      printf("R1\n");
+    }
+    if (i_joy_clicked(input_ctx, 0, XBOX_R1)) {
       ui_tree_next(&tree);
     }
 
-    if (i_joy_clicked(input_ctx, XBOX_L1)) {
+    if (i_joy_clicked(input_ctx, 0, XBOX_L1)) {
       ui_tree_prev(&tree);
     }
 
-    if (i_joy_clicked(input_ctx, XBOX_A)) {
+    if (i_joy_clicked(input_ctx, 0, XBOX_A)) {
       ui_tree_select(u_ctx, &tree, 1, 0);
     }
-  }*/
+  }
 
   int32_t event_type = 0;
   if ((event_type = ui_tree_check_event(&tree, button_uid))) {
@@ -407,7 +409,7 @@ int main(void) {
   r_ctx_destroy(render_ctx);
   ui_ctx_destroy(u_ctx);
 
-  asset_free(font_asset);
+  // asset_free(font_asset);
   free(input_ctx);
   free(render_ctx);
   free(u_ctx);

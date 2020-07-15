@@ -304,8 +304,9 @@ struct r_particles {
   // particle_life - the lifetime of the particle
   // system_life - the lifetype of the system (0 = infinite)
   // spawn_rate - the amount of particles to spawn per second
+  // prespawn - the amount of time to simulate before initial creation
   float particle_life, system_life;
-  float spawn_rate;
+  float spawn_rate, prespawn;
 
   // time - the internal timer of the particle system
   // spawn_time - the time remaining to next particle spawn
@@ -550,6 +551,12 @@ r_particles r_particles_create(uint32_t emit_rate, float particle_life,
                                int8_t particle_type, int8_t calculate,
                                uint16_t uniform_cap);
 
+/* Set a particle system's system properties
+ * lifetime - the max time the system can be alive (0 = forever)
+ * prespawn - the amount of time to simulate before updating */
+void r_particles_set_system(r_particles* system, float lifetime,
+                            float prespawn);
+
 /* Set particle system variables related to individual particles
  * NOTE: vectors can be passed as 0/NULL, and they won't be set
  *
@@ -749,6 +756,21 @@ void r_camera_get_size(vec2 dst, r_camera* camera);
  * size - the size to set the camera to */
 void r_camera_set_size(r_camera* camera, vec2 size);
 
+/* Set the camera's position
+ * camera - the camera to set
+ * position - the position to set the camera to */
+void r_camera_set_position(r_camera* camera, vec2 position);
+
+/* Get the camera's position
+ * camera - the camera to check
+ * dst - the destination of the position */
+void r_camera_get_position(r_camera* camera, vec2 dst);
+
+/* Center the camera to a given point in worldspace
+ * camera - the camera to set
+ * point - the point to center to */
+void r_camera_center_to(r_camera* camera, vec2 point);
+
 /* dst is the vector to store the worldpsace to
  * camera is the camera to translate the point from
  * point is the point within the camera [0,1] on each axis */
@@ -758,7 +780,7 @@ void r_camera_screen_to_world(vec2 dst, r_camera* camera, vec2 point);
  * (translated to 0...1 scale of camera size)
  * camera is the camera to translate the point from
  * point is the point in worldspace to translate */
-void r_camera_screen_to_world(vec2 dst, r_camera* camera, vec2 point);
+void r_camera_world_to_screen(vec2 dst, r_camera* camera, vec2 point);
 
 /* vert - the vertex shader program's data
  * frag - the fragment shader program's data */

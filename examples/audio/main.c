@@ -123,7 +123,6 @@ void init_audio() {
   blip_id = a_buf_create(audio_ctx, blip_data->data, blip_data->data_length,
                          "blip", 0);
   asset_free(blip_data);
-  free(blip_data);
 }
 
 void init() {
@@ -135,7 +134,7 @@ void init() {
   // drawing
   render_ctx = r_ctx_create(params, 0, 0, 0, 0, 0);
 
-  input_ctx = i_ctx_create(16, 16, 32, 8, 16, 32);
+  input_ctx = i_ctx_create(16, 16, 32, 5, 32);
 
   window_size[0] = (float)params.width;
   window_size[1] = (float)params.height;
@@ -201,15 +200,15 @@ void input(time_s delta) {
 
   int16_t joy_id = i_joy_connected(input_ctx);
   if (joy_id > -1) {
-    if (i_joy_clicked(input_ctx, XBOX_R1)) {
+    if (i_joy_clicked(input_ctx, 0, XBOX_R1)) {
       ui_tree_next(&tree);
     }
 
-    if (i_joy_clicked(input_ctx, XBOX_L1)) {
+    if (i_joy_clicked(input_ctx, 0, XBOX_L1)) {
       ui_tree_prev(&tree);
     }
 
-    if (i_joy_clicked(input_ctx, XBOX_A)) {
+    if (i_joy_clicked(input_ctx, 0, XBOX_A)) {
       ui_tree_select(u_ctx, &tree, 1, 0);
     }
   }

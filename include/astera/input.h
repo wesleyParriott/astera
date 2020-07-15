@@ -167,28 +167,29 @@ extern "C" {
 typedef struct i_ctx i_ctx;
 
 i_ctx* i_ctx_create(uint16_t max_mouse_buttons, uint16_t max_keys,
-                    uint16_t max_bindings, uint16_t max_joy_axes,
-                    uint16_t max_joy_buttons, uint16_t max_chars);
-void   i_ctx_destroy(i_ctx* ctx);
-void   i_ctx_update(i_ctx* ctx);
+                    uint16_t max_bindings, uint8_t max_joys,
+                    uint16_t max_chars);
+
+void i_ctx_destroy(i_ctx* ctx);
+void i_ctx_update(i_ctx* ctx);
 
 void i_poll_events();
 
-void i_joy_create(i_ctx* ctx, uint16_t joy);
-void i_joy_destroy(i_ctx* ctx, uint16_t joy);
+int8_t i_joy_create(i_ctx* ctx, uint8_t joy);
+void   i_joy_destroy(i_ctx* ctx, uint8_t joy);
 
-float i_joy_axis(i_ctx* ctx, uint16_t axis);
+float i_joy_axis(i_ctx* ctx, uint8_t joy_id, uint8_t axis);
 
-int         i_joy_connected(i_ctx* ctx);
-uint16_t    i_joy_down(i_ctx* ctx, uint16_t button);
-uint16_t    i_joy_up(i_ctx* ctx, uint16_t button);
-uint16_t    i_joy_clicked(i_ctx* ctx, uint16_t button);
-uint16_t    i_joy_released(i_ctx* ctx, uint16_t button);
-void        i_get_joy_buttons(i_ctx* ctx, uint16_t* dst, int count);
-const char* i_get_joy_name(uint16_t joy);
-uint16_t    i_get_joy_type(uint16_t joy);
+uint8_t     i_joy_connected(i_ctx* ctx);
+uint8_t     i_joy_exists(i_ctx* ctx, uint8_t joy_id);
+uint8_t     i_joy_down(i_ctx* ctx, uint8_t joy_id, uint8_t button);
+uint8_t     i_joy_up(i_ctx* ctx, uint8_t joy_id, uint8_t button);
+uint8_t     i_joy_clicked(i_ctx* ctx, uint8_t joy_id, uint8_t button);
+uint8_t     i_joy_released(i_ctx* ctx, uint8_t joy_id, uint8_t button);
+const char* i_get_joy_name(uint8_t joy);
+uint16_t    i_get_joy_type(uint8_t joy);
 
-float i_joy_axis_delta(i_ctx* ctx, uint16_t joy);
+float i_joy_axis_delta(i_ctx* ctx, uint8_t joy_id, uint8_t axis);
 
 void     i_key_callback(i_ctx* ctx, int key, int scancode, int toggle);
 uint16_t i_key_down(i_ctx* ctx, uint16_t key);
@@ -238,16 +239,16 @@ void i_binding_add_alt(i_ctx* ctx, const char* name, int value, int type);
 void i_enable_binding_track(i_ctx* ctx, const char* key_binding, uint8_t alt);
 uint16_t i_binding_count(i_ctx* ctx);
 
-void     i_binding_track_callback(i_ctx* ctx, int value, int type);
+void     i_binding_track_callback(i_ctx* ctx, int source, int value, int type);
 uint16_t i_binding_get_type(i_ctx* ctx, const char* key_binding);
 uint16_t i_binding_get_alt_type(i_ctx* ctx, const char* key_bindg);
-uint16_t i_binding_clicked(i_ctx* ctx, const char* key_binding);
-uint16_t i_binding_released(i_ctx* ctx, const char* key_binding);
-uint16_t i_binding_down(i_ctx* ctx, const char* key_binding);
-uint16_t i_binding_up(i_ctx* ctx, const char* key_binding);
+uint8_t  i_binding_clicked(i_ctx* ctx, const char* key_binding);
+uint8_t  i_binding_released(i_ctx* ctx, const char* key_binding);
+uint8_t  i_binding_down(i_ctx* ctx, const char* key_binding);
+uint8_t  i_binding_up(i_ctx* ctx, const char* key_binding);
 float    i_binding_val(i_ctx*      ctx,
                        const char* key_binding); // gets the value
-uint16_t i_binding_defined(i_ctx* ctx, const char* key_binding);
+uint8_t  i_binding_defined(i_ctx* ctx, const char* key_binding);
 
 #ifdef __cplusplus
 }

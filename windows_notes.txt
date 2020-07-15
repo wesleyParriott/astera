@@ -1,0 +1,2 @@
+Make sure OpenAL SDK installed make sure the library is in 
+https://www.openal.org/downloads/

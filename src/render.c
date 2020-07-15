@@ -74,6 +74,7 @@ static r_ctx* _r_ctx;
 
 static void glfw_err_cb(int error, const char* msg) {
   ASTERA_DBG("GLFW ERROR: %i %s\n", error, msg);
+  printf("GLFW error: %i %s\n", error, msg);
 }
 
 static void glfw_window_pos_cb(GLFWwindow* window, int x, int y) {
@@ -105,7 +106,7 @@ static void glfw_key_cb(GLFWwindow* window, int key, int scancode, int action,
   if (action == GLFW_PRESS || action == GLFW_REPEAT) {
     i_key_callback(_r_ctx->input_ctx, key, scancode, 1);
     if (i_key_binding_track(_r_ctx->input_ctx)) {
-      i_binding_track_callback(_r_ctx->input_ctx, key, ASTERA_BINDING_KEY);
+      i_binding_track_callback(_r_ctx->input_ctx, 0, key, ASTERA_BINDING_KEY);
     }
   } else if (action == GLFW_RELEASE) {
     i_key_callback(_r_ctx->input_ctx, key, scancode, 0);
@@ -130,7 +131,7 @@ static void glfw_mouse_button_cb(GLFWwindow* window, int button, int action,
   if (action == GLFW_PRESS || action == GLFW_REPEAT) {
     i_mouse_button_callback(_r_ctx->input_ctx, button, 1);
     if (i_key_binding_track(_r_ctx->input_ctx)) {
-      i_binding_track_callback(_r_ctx->input_ctx, button, ASTERA_BINDING_MB);
+      i_binding_track_callback(_r_ctx->input_ctx, 0, button, ASTERA_BINDING_MB);
     }
   } else {
     i_mouse_button_callback(_r_ctx->input_ctx, button, 0);
@@ -579,15 +580,45 @@ void r_camera_get_size(vec2 dst, r_camera* camera) {
   vec2_dup(dst, camera->size);
 }
 
+void r_camera_screen_to_world(vec2 dst, r_camera* camera, vec2 point) {
+  dst[0] = (camera->position[0]) + (camera->size[0] * point[0]);
+  dst[1] = (camera->position[1]) + (camera->size[1] * point[1]);
+}
+
+void r_camera_world_to_screen(vec2 dst, r_camera* camera, vec2 point) {
+  dst[0] =
+      (point[0] / camera->size[0]) - (camera->position[0] / camera->size[0]);
+  dst[1] =
+      (point[1] / camera->size[1]) - (camera->position[1] / camera->size[1]);
+}
+
 void r_camera_set_size(r_camera* camera, vec2 size) {
   vec2_dup(camera->size, size);
   mat4x4_ortho(camera->projection, 0, camera->size[0], camera->size[1], 0,
                camera->near, camera->far);
 }
 
+void r_camera_set_position(r_camera* camera, vec2 position) {
+  vec2_dup(camera->position, position);
+  r_camera_update(camera);
+}
+
+void r_camera_get_position(r_camera* camera, vec2 dst) {
+  vec2_dup(dst, camera->position);
+}
+
+void r_camera_center_to(r_camera* camera, vec2 point) {
+  vec2_dup(camera->position, point);
+  vec2 halfsize;
+  vec2_scale(halfsize, camera->size, 0.5f);
+  vec2_sub(camera->position, camera->position, halfsize);
+
+  r_camera_update(camera);
+}
+
 void r_camera_update(r_camera* camera) {
   mat4x4_identity(camera->view);
-  mat4x4_translate(camera->view, camera->position[0], camera->position[1],
+  mat4x4_translate(camera->view, -camera->position[0], -camera->position[1],
                    camera->position[2]);
 }
 
@@ -824,17 +855,22 @@ r_baked_sheet r_baked_sheet_create(r_sheet* sheet, r_baked_quad* quads,
   uint32_t uvert_count = 0;
 
   float*    verts = (float*)malloc(sizeof(float) * vert_cap);
-  uint16_t* inds  = (uint16_t*)malloc(sizeof(uint16_t) * ind_cap);
+  uint32_t* inds  = (uint32_t*)malloc(sizeof(uint32_t) * ind_cap);
 
-  uint16_t _inds[6]  = {0, 1, 2, 2, 3, 0};
+  uint32_t _inds[6]  = {0, 1, 2, 2, 3, 0};
   float    _verts[8] = {-0.5f, 0.5f, 0.5f, 0.5f, 0.5f, -0.5f, -0.5f, -0.5f};
   float    _texcs[8] = {0.f, 1.f, 1.f, 1.f, 1.f, 0.f, 0.f, 0.f};
 
   vec4 bounds = {0.f, 0.f, 0.f, 0.f};
 
   for (uint32_t i = 0; i < quad_count; ++i) {
-    r_baked_quad* quad   = &quads[i];
-    r_subtex*     subtex = &sheet->subtexs[quad->subtex];
+    r_baked_quad* quad = &quads[i];
+
+    if (quad->subtex >= sheet->count) {
+      continue;
+    }
+
+    r_subtex* subtex = &sheet->subtexs[quad->subtex];
 
     vec2 _offset = {quad->x, quad->y};
     vec2 _size   = {quad->width, quad->height};
@@ -939,7 +975,7 @@ void r_baked_sheet_draw(r_ctx* ctx, r_shader shader, r_baked_sheet* sheet) {
   glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 20, 0);
   glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 20, 12);
 
-  glDrawElements(GL_TRIANGLES, sheet->quad_count * 2, GL_UNSIGNED_SHORT, 0);
+  glDrawElements(GL_TRIANGLES, sheet->quad_count * 2, GL_UNSIGNED_INT, 0);
 
   glDisableVertexAttribArray(0);
   glDisableVertexAttribArray(1);
@@ -1002,6 +1038,25 @@ r_particles r_particles_create(uint32_t emit_rate, float particle_life,
   particles.count    = 0;
 
   return particles;
+}
+void r_particles_set_system(r_particles* system, float lifetime,
+                            float prespawn) {
+  system->system_life = lifetime;
+
+  float change = prespawn;
+  if (system->prespawn != 0.f) {
+    change -= system->prespawn;
+  }
+
+  system->prespawn = prespawn;
+
+  if (change > 0.f) {
+    uint32_t rounds = change / 100.f;
+    for (uint32_t i = 0; i < rounds; ++i) {
+      r_particles_update(system, (change > 100.f) ? 100.f : change);
+      change -= 100.f;
+    }
+  }
 }
 
 void r_particles_set_particle(r_particles* system, vec4 color,
@@ -1324,6 +1379,8 @@ static GLuint r_shader_create_sub(unsigned char* data, int type) {
     char* log = malloc(maxlen);
 
     glGetShaderInfoLog(id, maxlen, &len, log);
+    printf("%s: %s\n", (type == GL_FRAGMENT_SHADER) ? "FRAGMENT" : "VERTEX",
+           log);
     ASTERA_DBG("%s: %s\n", (type == GL_FRAGMENT_SHADER) ? "FRAGMENT" : "VERTEX",
                log);
     free(log);
@@ -1361,6 +1418,7 @@ r_shader r_shader_create(unsigned char* vert_data, unsigned char* frag_data) {
     char* log = malloc(maxlen);
     glGetProgramInfoLog(id, maxlen, &len, log);
     ASTERA_DBG("%s\n", log);
+    printf("%s\n", log);
     free(log);
   }
 

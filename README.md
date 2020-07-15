@@ -26,7 +26,7 @@ Here are the target platforms for this library:
 _NOTE: I'm always open to adding more target platforms!_
 
 ### Libraries Used
-[GLFW](https://github.com/glfw/glfw), [OpenAL-Soft](https://github.com/kcat/openal-soft), [GLAD](https://github.com/Dav1dde/glad), [STB](https://github.com/nothings/stb/) Image & Vorbis, [nanovg](https://github.com/memononen/nanovg), and [ZIP](https://github.com/kuba--/zip).
+[GLFW](https://github.com/glfw/glfw), [GLAD](https://github.com/Dav1dde/glad), [STB](https://github.com/nothings/stb/) Image & Vorbis, [nanovg](https://github.com/memononen/nanovg), and [xxhash](https://github.com/Cyan4973/xxHash).
 
 ### Building
 Astera and it's dependencies are built using CMake. You can run your own CMake command or try using one of the automated build scripts (they're located in the `tools/` folder).
@@ -53,14 +53,23 @@ Example script usage (generate a release candidate):
 Example CMake usage:
 
 ```
-cmake -Bbuilld -S. -DASTERA_BUILD_EXAMPLES=OFF -DCMAKE_BUILD_TYPE=Release # Generate the build files
-cmake --build build # Build the build files
+cmake -Bbuilld -S. -DASTERA_BUILD_EXAMPLES=OFF -DCMAKE_BUILD_TYPE=Release
+cmake --build build
 ```
+
+NOTE: Once the build files are generated (first line) you only have to call `cmake --build build` to rebuild the source.
 
 For more information see the relevant [wiki page](https://tek256.com/astera/Build%20Guide.html) or the `docs/Build Guide.rst` file.
 
 ### Changelog
 ```
+June 25, 2020 
+- Removed ZIP Usage (wasn't implemented)
+- Removed ZIP Utilities (weren't used)
+- Finalized PAK file support
+- Added `pakutil` in `tools/` directory
+- Added `ASTERA_BUILD_TOOLS` build target for tool programs 
+
 June 23, 2020 
 - Memory hardening (leaks / unitialization)
 - General bug fixes causing crashes

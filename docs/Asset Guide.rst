@@ -34,20 +34,14 @@ Now an example of it's usage:
 Asset Maps
 ^^^^^^^^^^
 
-Asset maps in astera are meant to represent a collection of related assets needed together. You can modify which individual assets you have in the map at any given time, and manage/find the assets within the map with relative ease. In astera these maps can be created around either a zip or pak file. Thus there are two different functions for creating the specific types:
+Asset maps in astera are meant to represent a collection of related assets needed together. You can modify which individual assets you have in the map at any given time, and manage/find the assets within the map with relative ease. In astera these maps can be created around pak files or the file system structure. Thus there are two different functions for creating the specific types:
 
 .. code-block:: c
-
-   /* Create an asset map to track assets using a zip file */
-   asset_map_t asset_map_create_zip(const char* filename, const char* name,
-                                    uint32_t capacity, uint8_t compression_level);
 
    /* Create an asset map to track assets using a pak file */
    asset_map_t asset_map_create_pak(const char* filename, const char* name,
                                     uint32_t capacity);
 
-
-**NOTE**: The default compression level (by most zip programs) of a zip file is 6. 
 
 From the asset map you can request specific files, and it'll fetch them for you. Once the map is created you can just call:
 
