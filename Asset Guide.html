@@ -215,17 +215,12 @@
 </div>
 <div class="section" id="asset-maps">
 <h2>Asset Maps<a class="headerlink" href="#asset-maps" title="Permalink to this headline">¶</a></h2>
-<p>Asset maps in astera are meant to represent a collection of related assets needed together. You can modify which individual assets you have in the map at any given time, and manage/find the assets within the map with relative ease. In astera these maps can be created around either a zip or pak file. Thus there are two different functions for creating the specific types:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/* Create an asset map to track assets using a zip file */</span>
-<span class="n">asset_map_t</span> <span class="nf">asset_map_create_zip</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">filename</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">name</span><span class="p">,</span>
-                                 <span class="kt">uint32_t</span> <span class="n">capacity</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">compression_level</span><span class="p">);</span>
-
-<span class="cm">/* Create an asset map to track assets using a pak file */</span>
+<p>Asset maps in astera are meant to represent a collection of related assets needed together. You can modify which individual assets you have in the map at any given time, and manage/find the assets within the map with relative ease. In astera these maps can be created around pak files or the file system structure. Thus there are two different functions for creating the specific types:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/* Create an asset map to track assets using a pak file */</span>
 <span class="n">asset_map_t</span> <span class="nf">asset_map_create_pak</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">filename</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">name</span><span class="p">,</span>
                                  <span class="kt">uint32_t</span> <span class="n">capacity</span><span class="p">);</span>
 </pre></div>
 </div>
-<p><strong>NOTE</strong>: The default compression level (by most zip programs) of a zip file is 6.</p>
 <p>From the asset map you can request specific files, and it’ll fetch them for you. Once the map is created you can just call:</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/* Get a file from the asset map&#39;s directed source */</span>
 <span class="n">asset_t</span><span class="o">*</span> <span class="nf">asset_map_get</span><span class="p">(</span><span class="n">asset_map_t</span><span class="o">*</span> <span class="n">map</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">file</span><span class="p">);</span>
